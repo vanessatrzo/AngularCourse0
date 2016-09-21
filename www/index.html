@@ -1,52 +1,58 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+<html lang="en" ng-app="gemStore">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!--<h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam ab numquam placeat tempora maxime perspiciatis alias, incidunt quisquam repellat beatae quibusdam veniam nam deleniti amet recusandae earum dolore, voluptate possimus.</h1>
+  <p> I am {{15 + 10}}</p>
+  <p>{{"Hello" + " World"}} </p>-->
 
-    <link rel="manifest" href="manifest.json">
+  <div class="container" ng-controller="StoreController as store">
+    <div class="list-group">
+      <div class="list-group-item"  ng-repeat="product in store.products | orderBy: 'price'">
+        <h3 product-title></h3>
+        <!--<img ng-src="{{product.images[0].url}}"  class="center-block"alt="">
+        <!--<product-title></product-title>
+        <div class="row">
+          <div class="col-sm-6 col-md-3">
+            <a href="" class="thumnail">
+              <img ng-repeat="image in product.images"
+              ng-src="{{image.url}}" class="image-responsive">
+            </a>
+          </div>
+        </div>-->
 
-    <!-- un-comment this code to enable service worker
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(() => console.log('service worker installed'))
-          .catch(err => console.log('Error', err));
-      }
-    </script>-->
+        <div class="" ng-controller="GalleryController as gallery" ng-show="product.images.length">
+          <div class="img-wrap">
+            <img class="center-block" ng-src="{{product.images[gallery.current].url}}"> 
+            </div>
+          <div class="row">
+          <div class="center-block">
+          <ul class="img-thumbnails clearfix ">
+            <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+              <img  ng-src="{{image.url}}" ng-click="gallery.setCurrent(image.id)" alt="">
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+        <product-panels></product-panels>
+        <!--<button ng-show="!product.canPurchase">Add to Cart</button>-->
+        
+      </div>
+    
+    </div>
+    
+  </div>
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
-
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
-
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/services.js"></script>
-  </head>
-  <body ng-app="starter">
-    <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-    </ion-nav-bar>
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
-    <ion-nav-view></ion-nav-view>
-  </body>
+  
+  <script src="js/angular.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
 </html>
